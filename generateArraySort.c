@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
   int size = atoi(numb);
   */
 
-  generate(100000000);
+  generate(100000000);  //100,000,000
 }
 
 void generate(int n)

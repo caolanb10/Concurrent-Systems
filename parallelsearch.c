@@ -9,7 +9,7 @@
 int linearSearch(int* array, int size, int find)
 {
   int found = -1;
-  #pragma omp parallel for default(none) shared(array, size, find) private(found)
+  #pragma omp parallel for
   for(int i = 0; i<size; i++)
   {
     if(array[i] == find)
@@ -19,8 +19,6 @@ int linearSearch(int* array, int size, int find)
   }
   return found;
 }
-
-
 
 int main(int argc, char* argv[])
 {
@@ -45,19 +43,7 @@ int main(int argc, char* argv[])
     fscanf(fp, "%d", &array[index]);
   }
   int number = array[findIndex];
-  //linearSearch(array,n,number);
-  int size = n;
-  int find = number;
-  int found = -1;
-  #pragma omp parallel for default(none) shared(array, size, find) private(found)
-  for(int i = 0; i<size; i++)
-  {
-    if(array[i] == find)
-    {
-      found = i+1;
-    }
-  }
-
+  linearSearch(array,n,number);
   clock_t end = clock();
   double elapsedTime = (double) (end-start)/CLOCKS_PER_SEC;
   printf("The time elapsed to find a number in an array of size %d is: %f\n",n ,elapsedTime);
